@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/287.df4fa6e6.chunk.css","mappings":"AAAA,WAII,gBAAiB,CADjB,kBAAmB,CADnB,YAAa,CADb,yBAAkB,CAAlB,iBAIJ","sources":["components/Cast/Cast.css"],"sourcesContent":[".cast_list{\n    width: min-content;\n    padding: 20px;\n    margin-bottom: 10px;\n    border: 1px solid;\n}"],"names":[],"sourceRoot":""}
