@@ -21,6 +21,7 @@ export default function OneFilms() {
 
   const { id } = useParams();
   const location = useLocation();
+  console.log('location in OneFils', location);
 
   useEffect(() => {
     if (!location.state) {
