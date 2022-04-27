@@ -26,15 +26,15 @@ export default function Films() {
     }
     SearchMovies(filmName).then(e => {
       setFilm(e.results);
-      handleSaerch();
+      navigate(`?query=${slugify(`${filmName}`, { lower: true })}`);
+      // handleSaerch();
     });
-  }, [filmName]);
+  }, [filmName, navigate]);
 
-  function handleSaerch() {
-    const name = slugify(`${filmName}`, { lower: true });
-
-    navigate(`?query=${name}`);
-  }
+  // function handleSaerch() {
+  //   const name = slugify(`${filmName}`, { lower: true });
+  //   navigate(`?query=${name}`);
+  // }
 
   function handleChange(e) {
     setInputName(e.currentTarget.value);

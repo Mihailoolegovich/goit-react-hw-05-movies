@@ -1,4 +1,5 @@
 import { GetMovieDetails } from 'ApiService/ApiService';
+import './MovieDetailsPage.css';
 import ImagTemplate from 'components/ImagTemplate';
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import {
@@ -22,8 +23,11 @@ export default function OneFilms() {
   const location = useLocation();
 
   useEffect(() => {
+    if (!location.state) {
+      return;
+    }
     setLocBack(location.state);
-  }, []);
+  }, [location.state]);
 
   useEffect(() => {
     GetMovieDetails(id)
