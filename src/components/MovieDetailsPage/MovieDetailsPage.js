@@ -14,7 +14,7 @@ import {
 const Cast = lazy(() => import('components/Cast/Cast.js'));
 const Reviews = lazy(() => import('components/Reviews/Reviews.js'));
 
-export default function OneFilms() {
+export default function MovieDetailsPage() {
   const [film, setFilm] = useState();
   const [error, setError] = useState();
   const [locBack, setLocBack] = useState([]);

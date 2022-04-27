@@ -4,7 +4,7 @@ import AppBar from './AppBar';
 
 const HomePage = lazy(() => import('./HomePage'));
 const Films = lazy(() => import('./MovesPage'));
-const OneFilms = lazy(() => import('./MovieDetailsPage'));
+const MovieDetailsPage = lazy(() => import('./MovieDetailsPage'));
 const Cast = lazy(() => import('./Cast'));
 const Reviews = lazy(() => import('./Reviews'));
 
@@ -16,10 +16,11 @@ export default function App() {
           <Route path="/" element={<AppBar />}>
             <Route index element={<HomePage />} />
             <Route path="films" element={<Films />}></Route>
-            <Route path="films/:id" element={<OneFilms />}>
+            <Route path="films/:id" element={<MovieDetailsPage />}>
               <Route path="cast" element={<Cast />}></Route>
               <Route path="reviews" element={<Reviews />}></Route>
             </Route>
+            <Route path="*" element={<HomePage />}></Route>
           </Route>
         </Routes>
       </Suspense>
