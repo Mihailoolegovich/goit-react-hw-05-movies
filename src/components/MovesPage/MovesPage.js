@@ -1,35 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import './MovesPage.css';
 import { SearchMovies } from 'ApiService/ApiService';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  // useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 import slugify from 'slugify';
 
-export default function Films() {
+export default function MovesPage() {
   const [film, setFilm] = useState([]);
   const [filmName, setFilmName] = useState('');
   const [inputName, setInputName] = useState('');
 
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const localName = window.localStorage.getItem('films_in_search');
+    // const localName = window.localStorage.getItem('films_in_search');
+    // if (localName) {
+    //   setFilmName(localName);
+    // }
 
-    if (localName) {
-      setFilmName(localName);
+    if (searchParams.get('query')) {
+      setFilmName(searchParams.get('query'));
     }
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (!filmName) {
       return;
     }
+    const slugName = slugify(filmName, { lower: true });
     SearchMovies(filmName).then(e => {
       setFilm(e.results);
-      navigate(`?query=${slugify(`${filmName}`, { lower: true })}`);
+      setSearchParams({ query: slugName });
+      // navigate(`?query=${slugify(filmName, { lower: true })}`);
+
       // handleSaerch();
     });
-  }, [filmName, navigate]);
+  }, [filmName, setSearchParams]);
 
   // function handleSaerch() {
   //   const name = slugify(`${filmName}`, { lower: true });
@@ -43,7 +55,7 @@ export default function Films() {
   function handleSubmit(e) {
     e.preventDefault();
     setFilmName(inputName);
-    window.localStorage.setItem('films_in_search', inputName);
+    // window.localStorage.setItem('films_in_search', inputName);
   }
 
   return (

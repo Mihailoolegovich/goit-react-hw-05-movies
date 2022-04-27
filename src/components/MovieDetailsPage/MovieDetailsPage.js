@@ -40,7 +40,7 @@ export default function MovieDetailsPage() {
 
   return (
     <>
-      <Link to={locBack.from?.pathname ?? '/'}>
+      <Link to={locBack.from?.pathname + locBack.from?.search ?? '/'}>
         <button type="button" style={{ marginBottom: '15px' }}>
           {locBack.label ?? 'Go back'}
         </button>
