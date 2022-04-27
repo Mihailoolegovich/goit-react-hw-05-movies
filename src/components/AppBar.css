@@ -1,0 +1,13 @@
+.link{
+    margin: 10px;
+    
+}
+
+/* .link:active{
+    color: red;
+} */
+
+.activeLink{
+    margin: 10px;
+    color: red;
+}
