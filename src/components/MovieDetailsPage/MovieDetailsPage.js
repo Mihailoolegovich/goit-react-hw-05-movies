@@ -17,17 +17,21 @@ const Reviews = lazy(() => import('components/Reviews/Reviews.js'));
 export default function MovieDetailsPage() {
   const [film, setFilm] = useState();
   const [error, setError] = useState();
-  const [locBack, setLocBack] = useState([]);
+  const [locBack, setLocBack] = useState({});
 
   const { id } = useParams();
   const location = useLocation();
-  console.log('location in OneFils', location);
 
   useEffect(() => {
     if (!location.state) {
       return;
     }
-    setLocBack(location.state);
+
+    let host = location.state.from.pathname;
+    if (location.state.from.search) {
+      host += location.state.from.search;
+    }
+    setLocBack({ hostParam: host, label: location.state.label });
   }, [location.state]);
 
   useEffect(() => {
@@ -40,7 +44,7 @@ export default function MovieDetailsPage() {
 
   return (
     <>
-      <Link to={locBack.from?.pathname + locBack.from?.search ?? '/'}>
+      <Link to={locBack.hostParam ?? '/'}>
         <button type="button" style={{ marginBottom: '15px' }}>
           {locBack.label ?? 'Go back'}
         </button>
